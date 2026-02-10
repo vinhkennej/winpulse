@@ -4,7 +4,7 @@
 
 =winpulse-mode= is a global minor mode that briefly flashes a window whenever it gains focus, giving you a clear visual cue for the active window.
 
-[[file:demo.webp]]
+#+HTML: <img src="https://raw.githubusercontent.com/xenodium/winpulse/refs/heads/main/demo.webp">
 
 * Install / Setup
 
