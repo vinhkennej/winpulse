@@ -4,6 +4,8 @@
 
 =winpulse-mode= is a global minor mode that briefly flashes a window whenever it gains focus, giving you a clear visual cue for the active window.
 
+[[file:demo.webp]]
+
 * Install / Setup
 
 #+begin_src emacs-lisp :lexical no
