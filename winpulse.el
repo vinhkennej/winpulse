@@ -50,15 +50,14 @@
   :type 'number
   :group 'winpulse)
 
+(defcustom winpulse-ignore-minibuffer-focus nil
+  "When non-nil, ignore minibuffer focus changes."
+  :type 'boolean
+  :group 'winpulse)
+
 (defcustom winpulse-excluded-buffer-patterns '("\\` \\*Minibuf-")
   "List of regexps matched against buffer names to skip flashing."
   :type '(repeat regexp)
-  :group 'winpulse)
-
-(defcustom winpulse-ignore-minibuffer-focus nil
-  "When non-nil, do not remember minibuffer as the last selected window.
-This avoids re-flashing the original window when exiting the minibuffer."
-  :type 'boolean
   :group 'winpulse)
 
 (defvar winpulse--last-selected-window nil

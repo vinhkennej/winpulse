@@ -15,3 +15,38 @@
     :config
     (winpulse-mode +1))
 #+end_src
+
+* Customizations
+
+#+BEGIN_SRC emacs-lisp :results table :colnames '("Custom variable" "Description") :exports results
+  (let ((rows))
+    (mapatoms
+     (lambda (symbol)
+       (when (and (string-match "^winpulse"
+                                (symbol-name symbol))
+                  (custom-variable-p symbol)
+                  (not (string-match-p "-mode\\(-hook\\)?$"
+                                       (symbol-name symbol))))
+         (push `(,symbol
+                 ,(car
+                   (split-string
+                    (or (documentation-property symbol 'variable-documentation)
+                        (get (indirect-variable symbol)
+                             'variable-documentation)
+                        (get symbol 'variable-documentation)
+                        "")
+                    "\n")))
+               rows))))
+    (sort rows (lambda (a b)
+                 (string< (symbol-name (car a))
+                          (symbol-name (car b))))))
+#+END_SRC
+
+#+RESULTS:
+| Custom variable                   | Description                                                    |
+|-----------------------------------+----------------------------------------------------------------|
+| winpulse-brightness               | How much to shift the color (0-255 range) at peak flash.       |
+| winpulse-duration                 | Total animation duration in seconds.                           |
+| winpulse-excluded-buffer-patterns | List of regexps matched against buffer names to skip flashing. |
+| winpulse-ignore-minibuffer-focus  | When non-nil, ignore minibuffer focus changes.                 |
+| winpulse-step-interval            | Seconds between animation frames.                              |
