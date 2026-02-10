@@ -35,6 +35,21 @@
   "Momentary window background flash animation."
   :group 'convenience)
 
+(defcustom winpulse-brightness 15
+  "How much to shift the color (0-255 range) at peak flash."
+  :type 'integer
+  :group 'winpulse)
+
+(defcustom winpulse-duration 0.32
+  "Total animation duration in seconds."
+  :type 'number
+  :group 'winpulse)
+
+(defcustom winpulse-step-interval 0.05
+  "Seconds between animation frames."
+  :type 'number
+  :group 'winpulse)
+
 (defcustom winpulse-excluded-buffer-patterns '("\\` \\*Minibuf-")
   "List of regexps matched against buffer names to skip flashing."
   :type '(repeat regexp)
@@ -44,21 +59,6 @@
   "When non-nil, do not remember minibuffer as the last selected window.
 This avoids re-flashing the original window when exiting the minibuffer."
   :type 'boolean
-  :group 'winpulse)
-
-(defcustom winpulse-step-interval 0.05
-  "Seconds between animation frames."
-  :type 'number
-  :group 'winpulse)
-
-(defcustom winpulse-duration 0.32
-  "Total animation duration in seconds."
-  :type 'number
-  :group 'winpulse)
-
-(defcustom winpulse-brightness 15
-  "How much to shift the color (0-255 range) at peak flash."
-  :type 'integer
   :group 'winpulse)
 
 (defvar winpulse--last-selected-window nil
