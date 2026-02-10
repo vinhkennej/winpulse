@@ -40,6 +40,12 @@
   :type '(repeat regexp)
   :group 'winpulse)
 
+(defcustom winpulse-ignore-minibuffer-focus nil
+  "When non-nil, do not remember minibuffer as the last selected window.
+This avoids re-flashing the original window when exiting the minibuffer."
+  :type 'boolean
+  :group 'winpulse)
+
 (defcustom winpulse-step-interval 0.04
   "Seconds between animation frames."
   :type 'number
@@ -70,7 +76,9 @@
     (when (and (not (eq win winpulse--last-selected-window))
                ;; No need to flash when there's only one window.
                (> (length (window-list)) 1))
-      (setq winpulse--last-selected-window win)
+      (unless (and winpulse-ignore-minibuffer-focus
+                   (minibufferp (window-buffer win)))
+        (setq winpulse--last-selected-window win))
       (winpulse-window win))))
 
 (defun winpulse-window (window)
